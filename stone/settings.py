@@ -26,6 +26,16 @@ PROJECT_DIR = Path(__file__).parent
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+
+#definicoes de email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_FILE_PATH = '/tmp/app-messages'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'uxteamstone@gmail.com'
+EMAIL_HOST_PASSWORD = 'stone123'
+
 SECRET_KEY = '#l87e)%if5_k!n(103d#blho$6&dyl35%5q=c5it9alepiv3ei'
 
 # SECURITY WARNING: don't run with debug turned on in production!

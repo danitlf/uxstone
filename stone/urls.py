@@ -20,4 +20,7 @@ from stone.app import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home, name='home'),
+    url(r'^mensagem_enviada/$', views.mensagem_enviada, name='mensagem_enviada'),
+    url(r'^send_email/$', views.send_email, name='send_email'),
+
 ]
