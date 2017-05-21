@@ -6,6 +6,7 @@ from stone.app.forms import ContactForm
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
+from stone.app.models import Pessoa, Projeto
 
 
 
@@ -13,8 +14,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 # Create your views here.
 
 def home(request):
+    pessoas = Pessoa.objects.all()
     form_class = ContactForm
-    return render(request, 'index.html', {'STATIC_URL': settings.STATIC_URL, 'form': form_class})
+    media = settings.MEDIA_URL
+    return render(request, 'index.html', {'STATIC_URL': settings.STATIC_URL, 'form': form_class, 'pessoas': pessoas, "MEDIA_URL": media})
 
 def mensagem_enviada(request):
     form_class = ContactForm
