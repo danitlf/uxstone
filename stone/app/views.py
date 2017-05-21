@@ -6,7 +6,7 @@ from stone.app.forms import ContactForm
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
-from stone.app.models import Pessoa, Projeto
+from stone.app.models import Pessoa, Projeto, Version, Feature
 
 
 
@@ -15,11 +15,16 @@ from stone.app.models import Pessoa, Projeto
 
 def home(request):
     pessoas = Pessoa.objects.all()
-    projetos = Projeto.objects.all()
+
+    #chama func que gera projetos
+    projetos = get_projetos()
+    
     form_class = ContactForm
-    return render(request, 'index.html',{'STATIC_URL': settings.STATIC_URL,'form': form_class,'pessoas': pessoas,"projetos": projetos})
+    return render(request, 'index.html',{'STATIC_URL': settings.STATIC_URL,'MEDIA_URL':settings.MEDIA_URL ,'form': form_class,'pessoas': pessoas,"projetos": projetos})
+
 
 def mensagem_enviada(request):
+    #url mostra mensagem de enviado com sucesso
     form_class = ContactForm
     return render(request, 'index.html', {'STATIC_URL': settings.STATIC_URL, 'form': form_class})
 
@@ -45,3 +50,16 @@ def send_email(request):
         # In reality we'd use a form class
         # to get proper validation errors.
         return HttpResponse('Make sure all fields are entered and valid.')
+
+
+def get_projetos():
+    #retorna projetos
+    projetos = Projeto.objects.all()
+    #adiciona no objeto projetos as versões e features
+    for projeto in projetos:
+        versoes = Version.objects.filter(projeto=projeto)
+        for v in versoes:
+            v.features = Feature.objects.filter(versao=v) 
+        projeto.versoes = versoes
+    
+    return projetos

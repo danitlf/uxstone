@@ -35,3 +35,21 @@ section#contact :-ms-input-placeholder {
   color: #555;
 }   
 
+.lista_features{
+  list-style-type: none;
+}
+
+.imagem_changelog{
+  margin-top:5%;
+  height:50%;
+  width:50%;
+}
+.bloco_changelog{
+  margin-top:5%; 
+  margin-left:-5%;
+}
+
+.versao{
+  margin-top: 5%;
+
+}
