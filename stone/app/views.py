@@ -15,9 +15,9 @@ from stone.app.models import Pessoa, Projeto
 
 def home(request):
     pessoas = Pessoa.objects.all()
+    projetos = Projeto.objects.all()
     form_class = ContactForm
-    media = settings.MEDIA_URL
-    return render(request, 'index.html', {'STATIC_URL': settings.STATIC_URL, 'form': form_class, 'pessoas': pessoas, "MEDIA_URL": media})
+    return render(request, 'index.html',{'STATIC_URL': settings.STATIC_URL,'form': form_class,'pessoas': pessoas,"projetos": projetos})
 
 def mensagem_enviada(request):
     form_class = ContactForm

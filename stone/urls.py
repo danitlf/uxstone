@@ -16,7 +16,8 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from stone.app import views
-
+from django.conf.urls.static import static
+from django.conf import settings
 
 
 urlpatterns = [
@@ -25,4 +26,4 @@ urlpatterns = [
     url(r'^mensagem_enviada/$', views.mensagem_enviada, name='mensagem_enviada'),
     url(r'^send_email/$', views.send_email, name='send_email'),
 
-] 
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
