@@ -16,7 +16,7 @@ class ProjetosAdmin(admin.ModelAdmin):
     list_editable = ()
     list_editable = ()
     search_fields = ('nome',)
-    fields = ()
+    fields = () 
     
     
     
