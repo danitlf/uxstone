@@ -25,8 +25,13 @@ def home(request):
 
 def mensagem_enviada(request):
     #url mostra mensagem de enviado com sucesso
+    pessoas = Pessoa.objects.all()
+
+    #chama func que gera projetos
+    projetos = get_projetos()
+    
     form_class = ContactForm
-    return render(request, 'index.html', {'STATIC_URL': settings.STATIC_URL, 'form': form_class})
+    return render(request, 'index.html',{'STATIC_URL': settings.STATIC_URL,'MEDIA_URL':settings.MEDIA_URL ,'form': form_class,'pessoas': pessoas,"projetos": projetos})
 
 def send_email(request):
     subject = request.POST.get('contact_name')

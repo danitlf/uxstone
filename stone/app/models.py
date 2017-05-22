@@ -9,7 +9,7 @@ class Projeto(models.Model):
 
     imagem = models.ImageField(_('Imagem:'),null=True, blank=True, upload_to= 'uploads')
     nome = models.TextField(_('Nome'),max_length=100,blank=True)
-    descricao = models.TextField(_('Nome'),max_length=100,blank=True)
+    descricao = models.TextField(_('descrição'),max_length=100,blank=True)
     def __unicode__(self):
         return (self.nome)
 
@@ -17,7 +17,6 @@ class Version(models.Model):
 
     versao = models.CharField(_('Numero da Versão'),max_length=100,null=True, blank=True)
     titulo = models.CharField(_('titulo'),max_length=100,null=True, blank=True)
-    descricao = models.TextField(_('descricao'),max_length=1000,blank=True)
     projeto = models.ForeignKey('Projeto')
     data = models.DateTimeField(auto_now=False, auto_now_add=False)
 
